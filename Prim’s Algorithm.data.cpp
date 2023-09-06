@@ -1,7 +1,3 @@
-// A C program for Prim's Minimum
-// Spanning Tree (MST) algorithm. The program is
-// for adjacency matrix representation of the graph
- 
 #include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -9,9 +5,6 @@
 // Number of vertices in the graph
 #define V 5
  
-// A utility function to find the vertex with
-// minimum key value, from the set of vertices
-// not yet included in MST
 int minKey(int key[], bool mstSet[])
 {
     // Initialize min value
@@ -23,9 +16,6 @@ int minKey(int key[], bool mstSet[])
  
     return min_index;
 }
- 
-// A utility function to print the
-// constructed MST stored in parent[]
 int printMST(int parent[], int graph[V][V])
 {
     printf("Edge \tWeight\n");
@@ -33,10 +23,6 @@ int printMST(int parent[], int graph[V][V])
         printf("%d - %d \t%d \n", parent[i], i,
                graph[i][parent[i]]);
 }
- 
-// Function to construct and print MST for
-// a graph represented using adjacency
-// matrix representation
 void primMST(int graph[V][V])
 {
     // Array to store constructed MST
@@ -50,9 +36,6 @@ void primMST(int graph[V][V])
     for (int i = 0; i < V; i++)
         key[i] = INT_MAX, mstSet[i] = false;
  
-    // Always include first 1st vertex in MST.
-    // Make key 0 so that this vertex is picked as first
-    // vertex.
     key[0] = 0;
    
     // First node is always root of MST
@@ -67,17 +50,7 @@ void primMST(int graph[V][V])
  
         // Add the picked vertex to the MST Set
         mstSet[u] = true;
- 
-        // Update key value and parent index of
-        // the adjacent vertices of the picked vertex.
-        // Consider only those vertices which are not
-        // yet included in MST
         for (int v = 0; v < V; v++)
- 
-            // graph[u][v] is non zero only for adjacent
-            // vertices of m mstSet[v] is false for vertices
-            // not yet included in MST Update the key only
-            // if graph[u][v] is smaller than key[v]
             if (graph[u][v] && mstSet[v] == false
                 && graph[u][v] < key[v])
                 parent[v] = u, key[v] = graph[u][v];
